@@ -1,17 +1,11 @@
 using splFacebookNet6.Helpers;
-using splFacebookNet6.Models;
 using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.Net;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-
+using splFacebookShare.Users;
 namespace splFacebookNet6.Services
 {
     public interface IHttpService

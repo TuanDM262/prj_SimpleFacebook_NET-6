@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using splFacebookNet6.Models;
+using splFacebookShare.Users;
 using splFacebookNet6.Models.Account;
 
 namespace splFacebookNet6.Services
@@ -47,8 +47,8 @@ namespace splFacebookNet6.Services
             // User = await _httpService.Post<User>("/users/authenticate", model);
             User = new User();
             User.Id = "1001";
-            User.FirstName = "Tuan";
-            User.LastName = "Doan";
+            User.UserName = "Tuan";
+            User.NormalizedUserName = "tuan";
             User.Token = model.Password;
             await _localStorageService.SetItem(_userKey, User);
         }
@@ -72,7 +72,11 @@ namespace splFacebookNet6.Services
 
         public async Task<User> GetById(string id)
         {
-            return await _httpService.Get<User>($"/users/{id}");
+            var users=  await this.GetAll();
+           
+           return users.FirstOrDefault<User>(x => x?.Id == id);
+
+           // return await _httpService.Get<User>($"/users/{id}");
         }
 
         public async Task Update(string id, EditUser model)
@@ -83,9 +87,7 @@ namespace splFacebookNet6.Services
             if (id == User.Id)
             {
                 // update local storage
-                User.FirstName = model.FirstName;
-                User.LastName = model.LastName;
-                User.Username = model.Username;
+                User.UserName = model.FirstName;               
                 await _localStorageService.SetItem(_userKey, User);
             }
         }

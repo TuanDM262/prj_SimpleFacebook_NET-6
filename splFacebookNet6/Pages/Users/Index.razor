@@ -7,8 +7,6 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th style="width: 30%">First Name</th>
-            <th style="width: 30%">Last Name</th>
             <th style="width: 30%">Username</th>
             <th style="width: 10%"></th>
         </tr>
@@ -19,9 +17,8 @@
             foreach (var user in users)
             {
                 <tr>
-                    <td>@user.FirstName</td>
-                    <td>@user.LastName</td>
-                    <td>@user.Username</td>
+                   
+                    <td>@user.UserName</td>
                     <td style="white-space: nowrap">
                         <NavLink href="@($"users/edit/{user.Id}")" class="btn btn-sm btn-primary mr-1">Edit</NavLink>
                         <button @onclick="@(() => DeleteUser(user.Id))" disabled="@user.IsDeleting" class="btn btn-sm btn-danger btn-delete-user">
@@ -58,6 +55,7 @@
         loading = true;
         users = await AccountService.GetAll();
         loading = false;
+         StateHasChanged();
     }
 
     private async void DeleteUser(string id) 

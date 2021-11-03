@@ -1,13 +1,13 @@
 using System.ComponentModel.DataAnnotations;
-
+using splFacebookShare.Users;
 namespace splFacebookNet6.Models.Account
 {
     public class EditUser
     {
-        [Required]
+       
         public string FirstName { get; set; }
 
-        [Required]
+      
         public string LastName { get; set; }
 
         [Required]
@@ -20,9 +20,7 @@ namespace splFacebookNet6.Models.Account
 
         public EditUser(User user)
         {
-            FirstName = user.FirstName;
-            LastName = user.LastName;
-            Username = user.Username;
+            Username = user.UserName;
         }
     }
 }
